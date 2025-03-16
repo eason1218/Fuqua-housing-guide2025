@@ -4,7 +4,7 @@
 
 The Fuqua Housing Map is an interactive map application developed using Python and Folium. It serves prospective and current Duke Fuqua MBA students by providing detailed visualizations of recommended housing options around Duke University's Fuqua School of Business in Durham, North Carolina. The map integrates data sourced directly from the official Duke Fuqua MBA Housing Guide, featuring apartment ratings and reviews provided by current MBA students.
 
-##Features
+## Features
 
 Interactive Map Interface: Intuitive navigation powered by Folium.
 
