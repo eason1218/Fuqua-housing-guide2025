@@ -1,36 +1,40 @@
 # Fuqua Housing Map
 
-## Overview
+## Project Overview
 
-The **Fuqua Housing Map** is an interactive Python application designed for Duke Fuqua MBA students to easily visualize and explore recommended housing options near Duke University's Fuqua School of Business in Durham, North Carolina. Built using Folium, the application leverages data from the official Duke Fuqua MBA Housing Guide, including apartment ratings and student reviews.
+The **Fuqua Housing Map** is an interactive Python-based application designed for prospective and current Duke Fuqua MBA students. Utilizing Folium, this map visually presents recommended housing options near Duke University's Fuqua School of Business in Durham, North Carolina. The application incorporates data directly from the official Duke Fuqua MBA Housing Guide, providing detailed apartment ratings and student reviews.
 
 ---
 
 ## Features
 
-- **Interactive Map**: Easy-to-use interface powered by Folium.
-- **Durham Boundaries**: Clearly defined city limits.
-- **Road Network**: Visible major roads for convenient navigation.
-- **Property Markers**: Detailed apartment information accessible through interactive markers.
-- **Apartment Ratings**: Comprehensive details including overall ratings, price range, management quality, amenities, value, social interactions, and safety.
-- **Embedded Property Images**: Visual previews directly within the interactive markers.
+- **Interactive Map Interface:** User-friendly navigation powered by Folium.
+- **Durham City Boundaries:** Clearly outlined city boundaries.
+- **Road Networks:** Easily navigable representation of major roads.
+- **Apartment Markers:** Detailed property information through interactive markers.
+- **Comprehensive Ratings:** Includes overall ratings, pricing, management quality, amenities, value, social environment, and safety based on Fuqua MBA student feedback.
+- **Embedded Images:** Property images integrated within interactive map pop-ups.
 
 ---
 
-## Data Sources
+## Dataset Description
 
-This project utilizes data from the official **Duke Fuqua MBA Housing Guide**, specifically:
+Datasets used in this application are sourced from the official Duke Fuqua MBA Housing Guide and include:
 
-- **Apartment Listings (33 properties)**
-  - Attributes: Name, Overall Rating (1-10), Price ($ to $$$$), Coordinates, URL.
+### Apartment Listings (33 properties)
 
-- **Additional Ratings (`Apartment_Ratings.csv`)**
-  - Attributes: Management, Amenities, Value, Social Engagement, Safety (1-4 stars).
+- **Attributes:** Property Name, Overall Rating (1-10 scale), Price Range (\$ to \$\$\$\$), Geographic Coordinates, Website URL.
 
-- **Geospatial Files**
-  - `City_of_Durham_Boundary.geojson`: Durham city boundaries.
-  - `Roads.geojson`: Durham road network.
+### Additional Ratings (`Apartment_Ratings.csv`)
 
-- **Images**
-  - Stored in the `images/` directory; embedded in the map using base64 encoding.
+- **Attributes:** Property Name, Management, Amenities, Value, Social Engagement, Safety (ratings from 1 to 4 stars).
+
+### Geospatial Data
+
+- `City_of_Durham_Boundary.geojson`: Durham city boundary outlines.
+- `Roads.geojson`: Detailed Durham road network.
+
+### Property Images
+
+- Images stored in the `images/` directory and embedded via base64 encoding.
 
