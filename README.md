@@ -1,41 +1,90 @@
 # Fuqua_housing_guide
 
-Project Overview
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
 
-The Fuqua Housing Map is an interactive map application developed using Python and Folium. It serves prospective and current Duke Fuqua MBA students by providing detailed visualizations of recommended housing options around Duke University's Fuqua School of Business in Durham, North Carolina. The map integrates data sourced directly from the official Duke Fuqua MBA Housing Guide, featuring apartment ratings and reviews provided by current MBA students.
+\lstset{
+basicstyle=\ttfamily\small,
+backgroundcolor=\color{gray!10},
+frame=single,
+breaklines=true
+}
 
-Features
+\begin{document}
 
-Interactive Map Interface: Intuitive navigation powered by Folium.
+\section*{Fuqua Housing Map}
 
-Durham City Boundaries: Visual outline of Durham city limits.
+\subsection*{Overview}
 
-Road Networks: Clear depiction of major roads for easier orientation.
+The \textbf{Fuqua Housing Map} is an interactive Python application designed for Duke Fuqua MBA students to easily visualize and explore recommended housing options near Duke University's Fuqua School of Business in Durham, North Carolina. Built using Folium, the application leverages data from the official Duke Fuqua MBA Housing Guide, including apartment ratings and student reviews.
 
-Apartment Markers: Interactive markers featuring detailed property information.
+\section*{Features}
 
-Comprehensive Ratings: Displays overall ratings, price levels, management quality, amenities, value, social engagement, and safety, directly sourced from Fuqua MBA student reviews.
+\begin{itemize}
+\item \textbf{Interactive Map}: Easy-to-use interface powered by Folium.
+\item \textbf{Durham Boundaries}: Clearly defined city limits.
+\item \textbf{Road Network}: Visible major roads for convenient navigation.
+\item \textbf{Property Markers}: Detailed apartment information accessible through interactive markers.
+\item \textbf{Apartment Ratings}: Comprehensive details including overall ratings, price range, management quality, amenities, value, social interactions, and safety.
+\item \textbf{Embedded Property Images}: Visual previews directly within the interactive markers.
+\end{itemize}
 
-Embedded Images: Visual previews of properties embedded within map pop-ups.
+\section*{Data Sources}
 
-Dataset Description
+This project utilizes data from the official \textbf{Duke Fuqua MBA Housing Guide}, specifically:
 
-The application uses datasets from the official Duke Fuqua MBA Housing Guide:
+\begin{itemize}
+\item \textbf{Apartment Listings (33 properties)}
+\begin{itemize}
+\item Attributes: Name, Overall Rating (1-10), Price ($ to $$$$), Coordinates, URL.
+\end{itemize}
 
-Apartment Listings (33 properties)
+\item \textbf{Additional Ratings (\texttt{Apartment_Ratings.csv})}
+\begin{itemize}
+\item Attributes: Management, Amenities, Value, Social Engagement, Safety (1-4 stars).
+\end{itemize}
 
-Attributes: Property Name, Overall Rating (scale 1-10), Price Range ($ to $$$$), Geographic Coordinates, Property Website URL.
+\item \textbf{Geospatial Files}
+\begin{itemize}
+\item \texttt{City_of_Durham_Boundary.geojson}: Durham city boundaries.
+\item \texttt{Roads.geojson}: Durham road network.
+\end{itemize}
 
-Additional Ratings CSV (Apartment_Ratings.csv)
+\item \textbf{Images}
+\begin{itemize}
+\item Stored in the \texttt{images/} directory; embedded in the map using base64 encoding.
+\end{itemize}
+\end{itemize}
 
-Attributes: Property Name, Management, Amenities, Value, Social Engagement, Safety (rated from 1 to 4 stars based on student feedback).
+\section*{Installation}
 
-Geospatial Data:
+Clone the repository and install the necessary Python dependencies:
 
-City_of_Durham_Boundary.geojson: Durham city boundary.
+\begin{lstlisting}[language=bash]
+git clone 
+cd 
+pip install folium geopandas shapely pandas
+\end{lstlisting}
 
-Roads.geojson: Road network within Durham.
+\section*{Usage}
 
-Property Images:
+Run the script to generate the interactive housing map:
 
-Images stored in the images/ directory, embedded directly into interactive property markers through base64 encoding.
+\begin{lstlisting}[language=bash]
+python fuqua_housing_map.py
+\end{lstlisting}
+
+This creates the map as \texttt{durham_properties_with_base64_images.html}.
+
+\section*{Future Improvements}
+
+\begin{itemize}
+\item Include real-time property availability and pricing updates.
+\item Add advanced filters tailored to user preferences.
+\item Expand map functionality with community-sourced reviews and ratings.
+\end{itemize}
+
+\end{document}
