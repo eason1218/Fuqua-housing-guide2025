@@ -1,4 +1,4 @@
-# Fuqua Housing Map
+# Fuqua Housing Guide 2025
 
 ## Project Overview
 
