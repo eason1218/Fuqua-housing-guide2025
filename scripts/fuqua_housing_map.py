@@ -3,21 +3,17 @@ import json
 import shapely.geometry
 import geopandas as gpd
 from folium import IFrame
-from folium.plugins import FloatImage
-from folium import DivIcon
 import pandas as pd
 import base64
 import os
 
-# 文件路径
+
 boundary_geojson_path = "City_of_Durham_Boundary.geojson"
 road_geojson_path = "Roads.geojson"
 
-# 读取 City of Durham 边界数据
 with open(boundary_geojson_path, "r", encoding="utf-8") as f:
     boundary_data = json.load(f)
 
-# 读取道路网络数据并处理 MultiLineString 几何
 with open(road_geojson_path, "r", encoding="utf-8") as f:
     road_data = json.load(f)
 
@@ -30,13 +26,10 @@ for feature in road_data["features"]:
     else:
         road_features.append({"geometry": geom, **feature["properties"]})
 
-# 创建道路的 GeoDataFrame
 road_gdf = gpd.GeoDataFrame(road_features, crs="EPSG:4326")
 
-# 创建 Folium 地图对象，并启用比例尺
 m = folium.Map(location=[36.001465, -78.939133], zoom_start=13, control_scale=True)
 
-# 创建自定义指北针 HTML
 compass_html = """
 <div id="compass" style="
     position: fixed;
@@ -57,7 +50,6 @@ compass_html = """
 """
 
 
-# 1️⃣ 添加 **自定义 Leaflet Pane**（确保指北针可见）
 m.get_root().html.add_child(folium.Element("""
     <style>
         .leaflet-top.leaflet-left { 
@@ -67,10 +59,8 @@ m.get_root().html.add_child(folium.Element("""
 """))
 
 
-# 3️⃣ **尝试直接插入 HTML**
 m.get_root().html.add_child(folium.Element(compass_html))
 
-# 绘制 City of Durham 边界
 for feature in boundary_data["features"]:
     geom = shapely.geometry.shape(feature["geometry"])
     if isinstance(geom, shapely.geometry.MultiPolygon):
@@ -87,7 +77,6 @@ for feature in boundary_data["features"]:
             weight=1
         ).add_to(m)
 
-# 绘制道路网络
 for _, row in road_gdf.iterrows():
     geom = row['geometry']
     if isinstance(geom, shapely.geometry.LineString):
@@ -104,7 +93,6 @@ for _, row in road_gdf.iterrows():
                 weight=0.5
             ).add_to(m)
 
-# 添加杜克大学的位置，使用红色星号标记
 folium.Marker(
     location=[36.00142, -78.939824],
     popup='Duke University',
@@ -117,8 +105,7 @@ folium.Marker(
     icon=folium.Icon(color='green', icon='star')
 ).add_to(m)
 
-# 物业列表：名称、评分、价格级别、纬度、经度
-# 物业列表（包含 33 个物业）
+
 properties = [
     ("501 Estates", 7.6, "$", 35.96624, -78.97838, "https://j501estates.com/?utm_source=apartmentseo&utm_medium=gmb&utm_campaign=organicmaplisting"),
     ("810 Ninth Street", 7.9, "$$", 36.01125, -78.92147, "https://www.810ninth.com/?ilm=onlinebusinesslisting&utm_source=obl&utm_medium=organic"),
@@ -155,20 +142,16 @@ properties = [
     ("Whetstone", 8.8, "$$", 35.99515, -78.90739, "https://www.whetstoneapartments.com/?ilm=obl&utm_source=obl&utm_medium=organic")
 ]
 
-# 加载CSV文件中的额外指标
 df_additional = pd.read_csv('Apartment_Ratings.csv')
 additional_info = df_additional.set_index('Property Name').to_dict('index')
 
-# 定义数字到星星的转换函数
 def stars(num):
     return '★' * int(num) + '☆' * (4 - int(num)) if pd.notnull(num) else 'N/A'
 
 
-# 添加物业标记及新指标
 for prop in properties:
     name, rating, price, lat, lon, url = prop
 
-    # 获取新指标并转换为星星
     info = additional_info.get(name, {})
     management = '★' * info.get('Management', 0)
     amenities = '★' * info.get('Amenities', 0)
@@ -176,14 +159,13 @@ for prop in properties:
     social = '★' * info.get('Social', 0)
     safety = '★' * info.get('Safety', 0)
 
-    # 为每个物业加载图片并转换为Base64
     image_path = f"images/{name.replace(' ', '_')}.jpg"
     if os.path.exists(image_path):
         with open(image_path, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read()).decode()
         image_html = f'<img src="data:image/jpeg;base64,{encoded_string}" width="200" height="120">'
     else:
-        image_html = '<div>图片未找到</div>'
+        image_html = '<div>photo_not_find</div>'
 
     # HTML内容
     html = f"""
@@ -206,5 +188,4 @@ for prop in properties:
         icon=folium.Icon(color='blue', icon='info-sign')
     ).add_to(m)
 
-# 保存地图
-m.save('durham_properties_with_base64_images.html')
+m.save('Fuqua_housing_map_2025.html')
