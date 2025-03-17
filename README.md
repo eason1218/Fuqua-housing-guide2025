@@ -1,8 +1,8 @@
-# Fuqua Housing Guide2025
+# Fuqua Housing Map2025
 
 ## Project Overview
 
-The **Fuqua Housing Guide2025** is an interactive Python-based application designed for prospective and current Duke Fuqua students. Utilizing Folium, this map visually presents recommended housing options near Duke University's Fuqua School of Business in Durham, North Carolina. The application incorporates data directly from the official Duke Fuqua Housing Guide, providing detailed apartment ratings and student reviews.
+The **Fuqua Housing Map2025** is an interactive Python-based application designed for prospective and current Duke Fuqua students. Utilizing Folium, this map visually presents recommended housing options near Duke University's Fuqua School of Business in Durham, North Carolina. The application incorporates data directly from the official Duke Fuqua Housing Guide, providing detailed apartment ratings and student reviews.
 
 ---
 
